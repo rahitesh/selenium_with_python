@@ -47,15 +47,19 @@ def test_login_before_checkout(setup):
     checkout_page.click_on_place_order_btn()  # Click on Place Order Button
 
     #payment 
-    payment_page.enter_card_holder_name("titu tata")
-    payment_page.enter_card_number("9754736251946378")
-    payment_page.enter_cvc_number("647")
-    payment_page.enter_expiry_month("12")
-    payment_page.enter_expiry_year("2030")
-    payment_page.click_on_place_confirm_order_button()
-    payment_msg = payment_page.get_payment_confirmation_msg()
-    assert payment_msg == "Congratulations! Your order has been confirmed!"
-    payment_page.click_on_continue_button()
-    home_page.click_on_logout_link()
+    payment_page.enter_card_holder_name("titu tata")  # Enter card holder name
+    payment_page.enter_card_number("9754736251946378")  # Enter card number
+    payment_page.enter_cvc_number("647")  # Enter CVC number
+    payment_page.enter_expiry_month("12")  # Enter expiry month
+    payment_page.enter_expiry_year("2030")  # Enter expiry year
+    payment_page.click_on_place_confirm_order_button()  # Click on Place Order button
+
+    # Payment Confirmation and Completion
+    payment_msg = payment_page.get_payment_confirmation_msg()  # Get payment confirmation message
+    assert payment_msg == "Congratulations! Your order has been confirmed!"  # Assert confirmation message
+    payment_page.click_on_continue_button()  # Click on Continue button
+
+    # Logout
+    home_page.click_on_logout_link()  # Click on logout link
 
 
