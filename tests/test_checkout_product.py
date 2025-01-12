@@ -2,6 +2,7 @@ from pages.home_page import Home_Page
 from pages.signup_page import Signup_Page
 from pages.view_cart_page import ViewCart_Page
 from pages.checkout_page import Checkout_Page
+from pages.payment_page import Payment_Page
 
 
 def test_login_before_checkout(setup):
@@ -10,6 +11,7 @@ def test_login_before_checkout(setup):
     signup_page = Signup_Page(driver)
     view_cart_page = ViewCart_Page(driver)
     checkout_page = Checkout_Page(driver)
+    payment_page = Payment_Page(driver)
 
     # User Login Steps
     home_page.click_on_signup_Btn()  # Click on Signup Button
@@ -43,3 +45,17 @@ def test_login_before_checkout(setup):
     # Place Order
     checkout_page.enter_order_msg("Place Order")  # Enter order message
     checkout_page.click_on_place_order_btn()  # Click on Place Order Button
+
+    #payment 
+    payment_page.enter_card_holder_name("titu tata")
+    payment_page.enter_card_number("9754736251946378")
+    payment_page.enter_cvc_number("647")
+    payment_page.enter_expiry_month("12")
+    payment_page.enter_expiry_year("2030")
+    payment_page.click_on_place_confirm_order_button()
+    payment_msg = payment_page.get_payment_confirmation_msg()
+    assert payment_msg == "Congratulations! Your order has been confirmed!"
+    payment_page.click_on_continue_button()
+    home_page.click_on_logout_link()
+
+

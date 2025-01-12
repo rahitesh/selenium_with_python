@@ -10,6 +10,7 @@ class Home_Page():
         self.first_product = (By.XPATH, "//img[@src = '/get_product_picture/1']")
         self.continue_shopping_btn = (By.XPATH,  "//button[text()='Continue Shopping']")
         self.cart_link = (By.XPATH, "//a[text()=' Cart']")
+        self.logout_btn = (By.XPATH, "//a[@href='/logout']")
 
         self.action = ActionChains(self.driver)
         self.common = Common_Methods(self.driver)
@@ -34,5 +35,9 @@ class Home_Page():
 
     def click_on_cart_button(self):
         self.common.wait_for_element(self.cart_link)
-        self.driver.find_element(*self.cart_link).click() 
+        self.driver.find_element(*self.cart_link).click()
+    
+    def click_on_logout_link(self):
+        self.common.wait_for_clickable(self.logout_btn)
+        self.driver.find_element(*self.logout_btn).click()
 
